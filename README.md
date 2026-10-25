@@ -42,7 +42,7 @@ decide in it.
 ## Quick start
 
 Requirements: **Blender 5.2+** and **Python 3.9+**. A GPU is optional; Cycles falls back to
-CPU. There are no other dependencies.
+CPU. There are no other dependencies (the optional PSD read-back tool needs `pip install psd-tools pillow numpy`).
 
 ```bash
 git clone https://github.com/starryark/3d-assisted-illustration && cd 3d-assisted-illustration
