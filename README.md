@@ -148,7 +148,8 @@ repository scripts the 3D half and hands over a file that is ready to paint on.
 Run the `render` stage. `ia.passes` sets up the compositor outputs (beauty, haze, mist, AO,
 emission, one mask per object group) and `ia.paintover` writes them as a PSD and an OpenRaster
 file with blend modes and visibility already set. The writer is pure numpy, so no add-on or
-PSD library is needed; `ia.paintover.write_psd()` also takes your own list of RGBA layers.
+PSD library is needed; from inside Blender, `ia.paintover.write_psd()` also takes your own list
+of RGBA layers.
 `tools/verify_paintover.py` reads the PSD back and compares every layer pixel by pixel.
 
 ### Can an AI coding agent build a Blender scene with this?
