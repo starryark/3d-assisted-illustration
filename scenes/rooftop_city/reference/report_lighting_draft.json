@@ -1,0 +1,139 @@
+{
+ "name": "rooftop_city_lighting_draft",
+ "asserts": [
+  {
+   "label": "figure sits on the parapet (|gap| < 1 cm)",
+   "ok": true,
+   "detail": "-0.0"
+  },
+  {
+   "label": "knees clear the parapet edge (shins hang over)",
+   "ok": true,
+   "detail": "0.04"
+  },
+  {
+   "label": "hands rest on the parapet (wrists 5-25 cm above the coping)",
+   "ok": true,
+   "detail": "[0.168, 0.168]"
+  },
+  {
+   "label": "figure on the left third, landmark on the right third (Cam_Main)",
+   "ok": true,
+   "detail": "{'figure': [0.361, 0.514], 'landmark': [0.661, 0.743]}"
+  },
+  {
+   "label": "landmark spire top inside the frame (Cam_Main)",
+   "ok": true,
+   "detail": "[0.661, 0.908]"
+  },
+  {
+   "label": "rooftop props rest on the roof (<2 cm)",
+   "ok": true,
+   "detail": "{'Hut': 0.0, 'HVAC_1': 0.0, 'HVAC_2': 0.0, 'Tank': 0.0, 'Mast': -0.003, 'Pole': 0.0}"
+  },
+  {
+   "label": "landmark visible in Cam_Main (>=50% of tower points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "figure looks toward the landmark (<20 deg)",
+   "ok": true,
+   "detail": "0.0"
+  },
+  {
+   "label": "lighting: at least one camera",
+   "ok": true,
+   "detail": "['Cam_Main', 'Cam_Wide']"
+  },
+  {
+   "label": "lighting: subject visible in Cam_Main (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "lighting: subject mask non-empty in Cam_Main",
+   "ok": true,
+   "detail": "0.61"
+  },
+  {
+   "label": "lighting: subject reads in grayscale in Cam_Main (|inside-ring| >= 0.2)",
+   "ok": true,
+   "detail": "{'inside': 0.192, 'ring': 0.522, 'delta': 0.331, 'coverage': 0.61}"
+  },
+  {
+   "label": "lighting: exposure in bounds in Cam_Main (0.08<mean<0.7, crush<15%, clip<5%)",
+   "ok": true,
+   "detail": "{'mean': 0.437, 'p50': 0.438, 'crush': 0.29, 'clip': 0.08, 'secs': 15.3}"
+  },
+  {
+   "label": "lighting: subject visible in Cam_Wide (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "lighting: subject mask non-empty in Cam_Wide",
+   "ok": true,
+   "detail": "0.1"
+  },
+  {
+   "label": "lighting: subject reads in grayscale in Cam_Wide (|inside-ring| >= 0.06)",
+   "ok": true,
+   "detail": "{'inside': 0.235, 'ring': 0.323, 'delta': 0.089, 'coverage': 0.1}"
+  },
+  {
+   "label": "lighting: exposure in bounds in Cam_Wide (0.08<mean<0.7, crush<15%, clip<5%)",
+   "ok": true,
+   "detail": "{'mean': 0.444, 'p50': 0.468, 'crush': 0.05, 'clip': 0.07, 'secs': 7.0}"
+  }
+ ],
+ "title": "Above the Haze",
+ "stage": "lighting",
+ "quality": "draft",
+ "resolution": [
+  480,
+  270
+ ],
+ "thirds": {
+  "figure": [
+   0.36129069328308105,
+   0.5135549306869507
+  ],
+  "landmark": [
+   0.6607000827789307,
+   0.7425108551979065
+  ]
+ },
+ "near_lod_buildings": 38,
+ "unified_materials": 3,
+ "exposure": {
+  "lighting:Cam_Main": {
+   "mean": 0.437,
+   "p50": 0.438,
+   "crush": 0.29,
+   "clip": 0.08
+  },
+  "lighting:Cam_Wide": {
+   "mean": 0.444,
+   "p50": 0.468,
+   "crush": 0.05,
+   "clip": 0.07
+  }
+ },
+ "value_separation": {
+  "lighting:Cam_Main": {
+   "inside": 0.192,
+   "ring": 0.522,
+   "delta": 0.331,
+   "coverage": 0.61
+  },
+  "lighting:Cam_Wide": {
+   "inside": 0.235,
+   "ring": 0.323,
+   "delta": 0.089,
+   "coverage": 0.1
+  }
+ },
+ "blender": "5.2.2 LTS",
+ "device": "CPU"
+}

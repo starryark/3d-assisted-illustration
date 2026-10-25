@@ -1,0 +1,7 @@
+# build outputs and downloaded/third-party assets (never committed)
+out/
+assets/
+*.blend
+*.blend1
+__pycache__/
+*.pyc

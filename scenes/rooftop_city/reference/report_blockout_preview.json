@@ -1,0 +1,102 @@
+{
+ "name": "rooftop_city_blockout_preview",
+ "asserts": [
+  {
+   "label": "figure sits on the parapet (|gap| < 1 cm)",
+   "ok": true,
+   "detail": "-0.0"
+  },
+  {
+   "label": "knees clear the parapet edge (shins hang over)",
+   "ok": true,
+   "detail": "0.04"
+  },
+  {
+   "label": "hands rest on the parapet (wrists 5-25 cm above the coping)",
+   "ok": true,
+   "detail": "[0.168, 0.168]"
+  },
+  {
+   "label": "figure on the left third, landmark on the right third (Cam_Main)",
+   "ok": true,
+   "detail": "{'figure': [0.361, 0.514], 'landmark': [0.661, 0.743]}"
+  },
+  {
+   "label": "landmark spire top inside the frame (Cam_Main)",
+   "ok": true,
+   "detail": "[0.661, 0.908]"
+  },
+  {
+   "label": "blockout: at least one camera",
+   "ok": true,
+   "detail": "['Cam_Main', 'Cam_Wide']"
+  },
+  {
+   "label": "blockout: subject visible in Cam_Main (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "blockout: subject mask non-empty in Cam_Main",
+   "ok": true,
+   "detail": "0.6"
+  },
+  {
+   "label": "blockout: subject visible in Cam_Wide (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "blockout: subject mask non-empty in Cam_Wide",
+   "ok": true,
+   "detail": "0.1"
+  }
+ ],
+ "title": "Above the Haze",
+ "stage": "blockout",
+ "quality": "preview",
+ "resolution": [
+  960,
+  540
+ ],
+ "thirds": {
+  "figure": [
+   0.36129069328308105,
+   0.5135549306869507
+  ],
+  "landmark": [
+   0.6607000827789307,
+   0.7425108551979065
+  ]
+ },
+ "exposure": {
+  "blockout:Cam_Main": {
+   "mean": 0.498,
+   "p50": 0.47,
+   "crush": 0.0,
+   "clip": 0.0
+  },
+  "blockout:Cam_Wide": {
+   "mean": 0.464,
+   "p50": 0.448,
+   "crush": 0.0,
+   "clip": 0.0
+  }
+ },
+ "value_separation": {
+  "blockout:Cam_Main": {
+   "inside": 0.48,
+   "ring": 0.532,
+   "delta": 0.052,
+   "coverage": 0.6
+  },
+  "blockout:Cam_Wide": {
+   "inside": 0.529,
+   "ring": 0.526,
+   "delta": 0.003,
+   "coverage": 0.1
+  }
+ },
+ "blender": "5.2.2 LTS",
+ "device": "GPU"
+}

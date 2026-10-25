@@ -1,0 +1,109 @@
+{
+ "name": "rooftop_city_materials_preview",
+ "asserts": [
+  {
+   "label": "figure sits on the parapet (|gap| < 1 cm)",
+   "ok": true,
+   "detail": "-0.0"
+  },
+  {
+   "label": "knees clear the parapet edge (shins hang over)",
+   "ok": true,
+   "detail": "0.04"
+  },
+  {
+   "label": "hands rest on the parapet (wrists 5-25 cm above the coping)",
+   "ok": true,
+   "detail": "[0.168, 0.168]"
+  },
+  {
+   "label": "figure on the left third, landmark on the right third (Cam_Main)",
+   "ok": true,
+   "detail": "{'figure': [0.361, 0.514], 'landmark': [0.661, 0.743]}"
+  },
+  {
+   "label": "landmark spire top inside the frame (Cam_Main)",
+   "ok": true,
+   "detail": "[0.661, 0.908]"
+  },
+  {
+   "label": "rooftop props rest on the roof (<2 cm)",
+   "ok": true,
+   "detail": "{'Hut': 0.0, 'HVAC_1': 0.0, 'HVAC_2': 0.0, 'Tank': 0.0, 'Mast': -0.003, 'Pole': 0.0}"
+  },
+  {
+   "label": "materials: at least one camera",
+   "ok": true,
+   "detail": "['Cam_Main', 'Cam_Wide']"
+  },
+  {
+   "label": "materials: subject visible in Cam_Main (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "materials: subject mask non-empty in Cam_Main",
+   "ok": true,
+   "detail": "0.6"
+  },
+  {
+   "label": "materials: subject visible in Cam_Wide (>=60% of key points)",
+   "ok": true,
+   "detail": "1.0"
+  },
+  {
+   "label": "materials: subject mask non-empty in Cam_Wide",
+   "ok": true,
+   "detail": "0.1"
+  }
+ ],
+ "title": "Above the Haze",
+ "stage": "materials",
+ "quality": "preview",
+ "resolution": [
+  960,
+  540
+ ],
+ "thirds": {
+  "figure": [
+   0.36129069328308105,
+   0.5135549306869507
+  ],
+  "landmark": [
+   0.6607000827789307,
+   0.7425108551979065
+  ]
+ },
+ "near_lod_buildings": 38,
+ "unified_materials": 3,
+ "exposure": {
+  "materials:Cam_Main": {
+   "mean": 0.336,
+   "p50": 0.267,
+   "crush": 0.84,
+   "clip": 0.05
+  },
+  "materials:Cam_Wide": {
+   "mean": 0.3,
+   "p50": 0.259,
+   "crush": 2.0,
+   "clip": 0.05
+  }
+ },
+ "value_separation": {
+  "materials:Cam_Main": {
+   "inside": 0.164,
+   "ring": 0.343,
+   "delta": 0.179,
+   "coverage": 0.6
+  },
+  "materials:Cam_Wide": {
+   "inside": 0.2,
+   "ring": 0.256,
+   "delta": 0.056,
+   "coverage": 0.1
+  }
+ },
+ "blender": "5.2.2 LTS",
+ "device": "GPU"
+}
