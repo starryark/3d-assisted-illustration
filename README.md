@@ -2,17 +2,19 @@
 
 [![ci](https://github.com/starryark/3d-assisted-illustration/actions/workflows/ci.yml/badge.svg)](https://github.com/starryark/3d-assisted-illustration/actions/workflows/ci.yml)
 
-**A reproducible Blender workflow for illustrators and coding agents.** Build a scene that
-gives you reliable perspective, scale and light. Render a base image plus the passes and
-masks a painter needs. Then hand it to 2D as a layered PSD/ORA. Every stage is a Python
+**A reproducible Blender workflow for illustrators and coding agents.** 3D-assisted
+illustration means painting over a 3D base: you build the scene in 3D to get perspective,
+scale and light right, then finish the picture in 2D. This toolkit builds that base from
+Python, renders the passes and masks a painter needs, and writes them as a layered PSD/ORA
+paintover file for Photoshop, Krita, SAI2, Clip Studio Paint or GIMP. Every stage is a Python
 function, every build is seeded, and every checkpoint is checked with numbers, not vibes.
 
-![The five checkpoints of the example scene](media/stages.jpg)
+![Five checkpoint renders of the same rooftop scene, left to right: gray clay blockout, detailed clay model, materials under neutral light, hazy lighting, final render](media/stages.jpg)
 
 *The worked example, "Above the Haze": blockout → assemble → materials → lighting → render.
 Every image above is a checkpoint the pipeline renders and checks automatically.*
 
-![Final render](media/final_Cam_Main.jpg)
+![Final Blender Cycles render: a dark mannequin sits on a rooftop parapet looking out over a hazy city towards a lattice tower, with a rusty air-conditioning unit and a stair hut in the foreground](media/final_Cam_Main.jpg)
 
 It runs headless (`blender --background`), so it works the same on a laptop, in CI, or
 driven by an agent such as [Claude Code](https://claude.com/claude-code), which built
@@ -88,7 +90,7 @@ on the network. Sourcing and import hygiene for other assets: [`docs/ASSETS.md`]
 
 ## The paintover kit
 
-![Paintover layers](media/paintover_layers.jpg)
+![Paintover kit layers: base, haze, ambient occlusion and emission passes, colour-coded selection masks for the figure, rooftop, near city, far city, landmark and sky, and the final render as reference](media/paintover_layers.jpg)
 
 One file per camera, with these layers (top to bottom):
 
@@ -132,6 +134,51 @@ anywhere. The intended loop is:
 3. Read the report and look at the checkpoint image.
 4. Fix, then move to the next stage.
 
+## FAQ
+
+### What is 3D-assisted illustration?
+
+Making a 2D illustration or piece of concept art on top of a 3D base. Blocking the scene out
+in 3D settles perspective, scale, contact and lighting; the render is then painted over in 2D,
+where style, faces and detail are added. Chinese-speaking artists call the base a 3D垫图. This
+repository scripts the 3D half and hands over a file that is ready to paint on.
+
+### How do I export Blender render passes to a layered PSD?
+
+Run the `render` stage. `ia.passes` sets up the compositor outputs (beauty, haze, mist, AO,
+emission, one mask per object group) and `ia.paintover` writes them as a PSD and an OpenRaster
+file with blend modes and visibility already set. The writer is pure numpy, so no add-on or
+PSD library is needed; `ia.paintover.write_psd()` also takes your own list of RGBA layers.
+`tools/verify_paintover.py` reads the PSD back and compares every layer pixel by pixel.
+
+### Can an AI coding agent build a Blender scene with this?
+
+Yes; an agent built this repository. It writes one stage in `scenes/<name>/scene.py`, runs it
+headless with `tools/run.py`, reads the JSON report, looks at the checkpoint image, and only
+then moves on. The numeric checks catch what an agent's visual judgement misses (see
+[`docs/CASE_STUDY.md`](docs/CASE_STUDY.md)). `AGENTS.md` and the Claude Code skill hold the
+rules; the tools are plain Python, so any agent that can run shell commands can use them.
+
+### How is this different from Blender MCP or text-to-3D?
+
+A Blender MCP server lets a model drive a running Blender session one call at a time, and a
+text-to-3D model generates a mesh. This is neither: it is a set of scripts and checks for
+building a whole illustration base, run headless, where every placement is measured and every
+stage can be rebuilt from code.
+
+### Does it need the Blender GUI, an add-on or a GPU?
+
+No. It needs Blender 5.2+ in `--background` mode and Python 3.9+. Cycles uses a GPU if there is
+one and falls back to the CPU; CI builds the whole example on CPU.
+
+### Can I use my own models, textures and HDRIs?
+
+Yes. `ia.assets` imports FBX, OBJ, glTF and .blend files in isolation, checks their scale,
+missing textures and colour spaces, and normalises them. `ia.materials.unify()` brings their
+materials into the scene's family, and `ia.posing` poses imported rigs.
+`tools/fetch_cc0.py` downloads CC0 HDRIs and texture sets from Poly Haven. See
+[`docs/ASSETS.md`](docs/ASSETS.md).
+
 ## Background and prior art
 
 The stage structure follows the process 吼姆碳 describes for 3D-assisted illustration: find
@@ -154,6 +201,18 @@ Related tools cover parts of the pipeline:
 What is different here is the whole loop, from blockout to layered paintover file, as plain
 scripts with automated checkpoints. It has no add-on dependency and is built to be run and
 extended by an agent.
+
+## Working on something similar?
+
+If you are building a 3D base for painting, a Blender-to-PSD pipeline, or an agent that makes
+3D scenes, [start a discussion](https://github.com/starryark/3d-assisted-illustration/discussions)
+to compare notes or link your project.
+
+## 中文简介
+
+**3D辅助插画（3D垫图）的自动化流程。** 用 Blender 的 Python 脚本在无界面（headless）模式下搭建场景，先解决透视、比例和光影，再渲染出底图、雾气、AO、自发光和按物体分组的选区遮罩，打包成分层 PSD / ORA 文件，可直接在 Photoshop、SAI2、Krita、Clip Studio 中绘制，适合用作板绘插画和概念设计的场景垫图。
+
+流程分为五个阶段：粗模（blockout）→ 细化模型 → 材质 → 灯光 → 渲染。每个阶段都会渲染检查图，并用数值断言检查接触、构图、主体可见性，以及主体在灰度下是否与周围拉开明暗。整套流程可以交给 Claude Code 等 AI 编程代理执行。阶段划分参考了吼姆碳介绍的 3D 辅助插画思路（见上方 “Background and prior art”），本仓库是独立实现。
 
 ## License
 

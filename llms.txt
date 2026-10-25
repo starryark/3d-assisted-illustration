@@ -1,0 +1,21 @@
+# 3D-Assisted Illustration
+
+> A Blender Python toolkit that builds a 3D base for digital painting and concept art (perspective, scale, light), renders the passes and masks a painter needs, and writes them as a layered PSD/ORA paintover file. It runs headless, every build is seeded, and every stage (blockout, assemble, materials, lighting, render) is checked with numeric asserts. It is written to be run and extended by AI coding agents such as Claude Code.
+
+Requires Blender 5.2+ and Python 3.9+, no add-ons. Entry point: `python tools/run.py scenes/<name> [--until <stage>] [--quality draft|preview|final]`. New scene: `python tools/new_scene.py <name> "<Title>"`.
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/README.md): overview, quick start, module map, FAQ
+- [AGENTS.md](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/AGENTS.md): rules and loop for coding agents
+- [Claude Code skill](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/.claude/skills/3d-assisted-illustration/SKILL.md): the same workflow as an agent skill
+- [Workflow](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/WORKFLOW.md): what to decide in each stage
+- [Verification](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/VERIFICATION.md): the checks and report format
+- [Paintover kit](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/PAINTOVER.md): PSD/ORA layer stack and how to paint on it
+- [Assets](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/ASSETS.md): importing models, textures and HDRIs
+- [Lessons](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/LESSONS.md): Blender 5.2 Python API traps
+
+## Optional
+
+- [Case study](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/docs/CASE_STUDY.md): the agent-built scene this toolkit was generalised from
+- [Example scene](https://raw.githubusercontent.com/starryark/3d-assisted-illustration/main/scenes/rooftop_city/scene.py): all five stages for "Above the Haze"
